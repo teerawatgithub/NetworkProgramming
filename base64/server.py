@@ -4,7 +4,7 @@ import base64
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((socket.gethostname(), 1234))
 s.listen(5)
-print('wait')
+print('waiting for client request')
 dataFull = ""
 clientsocket, address = s.accept()
 while True:
@@ -20,14 +20,15 @@ while True:
     data1 = repr(data.decode())#decode คือเอาตัว b ออก
     #print("********************")
     #print(data1)
-    data1 = data1[1:len(data1)-1]  #เอา ' ออก 1คือตัวหน้า -1คือตัวหลัง
+    data1 = data1[1:len(data1)-1]  #เอา ' ออก 1คือตัวหน้า -1คือตัวหลั
+    print(data1)
     dataFull = dataFull + data1
 
 
 namePhoto = input("Name photo : ")
 imgdata = base64.b64decode(dataFull)
 filename = namePhoto + '.jpg'  # I assume you have a way of picking unique filenames
-with open("D:\\Working\\comnet\\python-20190819T101748Z-001\\python\\base64\\" + filename, 'wb') as f:
+with open("D:\\Working\\comnet\\python-20190819T101748Z-001\\python\\base64\\output\\" + filename, 'wb') as f:
     f.write(imgdata)
     print('successful!')
     # # ส่งไป client
